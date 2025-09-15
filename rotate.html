@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #D2D2D2;
+            background-image:
+            repeating-linear-gradient(
+                to right, transparent 0 100px,
+                #25283b22 100px 101px
+            ),
+            repeating-linear-gradient(
+                to bottom, transparent 0 100px,
+                #25283b22 100px 101px
+            );
+        }
+        
+        body::before{
+            position: absolute;
+            width: min(1400px, 90vw);
+            top: 10%;
+            left: 50%;
+            height: 90%;
+            transform: translateX(-50%);
+            content: '';
+            background-image: url(images/bg.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: top center;
+            pointer-events: none;
+        }
+
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #D2D2D2;
+            background-image:
+                repeating-linear-gradient(
+                    to right, transparent 0 100px,
+                    #25283b22 100px 101px
+                ),
+                repeating-linear-gradient(
+                    to bottom, transparent 0 100px,
+                    #25283b22 100px 101px
+                );
+        }
+        body::before {
+            position: absolute;
+            width: min(1400px, 90vw);
+            top: 10%;
+            left: 50%;
+            height: 90%;
+            transform: translateX(-50%);
+            content: '';
+            background-image: url(images/bg.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: top center;
+            pointer-events: none;
+
+        }
+
+
+
+
+
+        #mute-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #ffcc00);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease-in-out;
+        }
+        #mute-btn:hover {
+            transform: scale(1.1);
+        }
+        .black_font{
+            color: rgb(255, 81, 0);
+        }
+    </style>
+
+</head>
+<body>
+<audio id="background-audio" loop>
+    <source src="images/song1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<button id="mute-btn" title="Toggle Sound">🔇</button>
+
+
+
+
+    <div class="banner">
+        <div class="slider" style="--quantity: 10">
+            <div class="item" style="--position: 1"><img src="images/img1.png" alt=""></div>
+            <div class="item" style="--position: 2"><img src="images/img2.png" alt=""></div>
+            <div class="item" style="--position: 3"><img src="images/img3.png" alt=""></div>
+            <div class="item" style="--position: 4"><img src="images/img4.png" alt=""></div>
+            <div class="item" style="--position: 5"><img src="images/img5.png" alt=""></div>
+            <div class="item" style="--position: 6"><img src="images/img6.png" alt=""></div>
+            <div class="item" style="--position: 7"><img src="images/img7.png" alt=""></div>
+            <div class="item" style="--position: 8"><img src="images/img8.png" alt=""></div>
+            <div class="item" style="--position: 9"><img src="images/img2.png" alt=""></div>
+            <div class="item" style="--position: 10"><img src="images/img6.png" alt=""></div>
+        </div>
+        <div class="content">
+            <h1 data-content="HAPPY">
+                HAPPY
+            </h1>
+            <div class="author">
+                <h2>Birthday</h2>
+                <p><b>Suhani🤍</b></p>
+                <p>
+                    Stay blessed and keep smiling as usual Mahotarma!<br/>
+                    Our kuch bolu kya?<br/>Thik hai___
+                    Sach batau to... day by day You are becoming more special🙂‍↔️. I dont know why but it really feels good🫠
+                    <br/><b class="black_font">Unmute plz👇</b>
+                </p>
+            </div>
+            <div class="model"></div>
+        </div>
+    </div>
+
+
+
+
+<script>
+    const audio = document.getElementById('background-audio');
+    const muteBtn = document.getElementById('mute-btn');
+    let isPlaying = false;
+
+    document.addEventListener('click', function firstInteraction() {
+        if (!isPlaying) {
+            audio.volume = 0.5;
+            audio.play().then(() => {
+                isPlaying = true;
+                audio.muted = false;
+                muteBtn.textContent = "🔊";
+                console.log("Audio started!");
+            }).catch(error => {
+                console.error("Playback failed:", error);
+                alert("Please allow audio playback in your browser settings.");
+            });
+        }
+        document.removeEventListener('click', firstInteraction);
+    });
+
+    muteBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            audio.muted = !audio.muted;
+            muteBtn.textContent = audio.muted ? "🔇" : "🔊";
+        } else {
+            alert("Please click anywhere on the page first to start the audio!");
+        }
+    });
+</script>
+
+
+    
+</body>
+</html>
